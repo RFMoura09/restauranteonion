@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+</head>
+<body>
+    <h1>hello!!!!!</h1>
+    <div id="dados"></div>
+    <script>
+        fetch("/api")
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("dados").innerHTML = `<ul>`;
+            [...data].map(d => {
+                document.getElementById("dados").innerHTML += `
+                    <li> ${d.nome}, ${d.idade} </li>
+                `;
+            })
+            document.getElementById("dados").innerHTML += `</ul>`;
+        })
+        .catch(e => document.getElementById("dados").innerHTML = 'erro')
+    </script>
+</body>
+</html>
